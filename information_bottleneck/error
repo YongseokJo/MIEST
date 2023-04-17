@@ -1,0 +1,337 @@
+[32m[I 2023-03-24 11:06:43,382][0m Using an existing study with name 'TNG_SIMBA_HI' instead of creating a new one.[0m
+[33m[W 2023-03-24 11:06:56,091][0m Trial 45 failed because of the following error: RuntimeError('CUDA error: no kernel image is available for execution on the device\nCUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.\nFor debugging consider passing CUDA_LAUNCH_BLOCKING=1.')[0m
+Traceback (most recent call last):
+  File "/mnt/home/yjo10/pyenv/venv/lib/python3.9/site-packages/optuna/study/_optimize.py", line 196, in _run_trial
+    value_or_values = func(trial)
+  File "/mnt/ceph/users/yjo10/CAMELS/MIEST/information_bottleneck/./optimization_a.py", line 33, in objective
+    mist.train(epochs=2,
+  File "/mnt/home/yjo10/ceph/CAMELS/MIEST/utils/mist_utils.py", line 43, in train
+    self.vib, self.cls = trainer.run(learning_rate, epochs, decay_rate, beta, gamma,
+  File "/mnt/home/yjo10/ceph/CAMELS/MIEST/utils/vib_utils.py", line 331, in run
+    losses, pred = self.train_vib(X,y_param,beta,gamma,y_cls=y_cls)
+  File "/mnt/home/yjo10/ceph/CAMELS/MIEST/utils/vib_utils.py", line 455, in train_vib
+    y_pred, y_sigma = self.vib(X)
+  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/mnt/home/yjo10/ceph/CAMELS/MIEST/utils/vib_utils.py", line 94, in forward
+    self.mu, self.std = self.encoder(x)
+  File "/mnt/home/yjo10/ceph/CAMELS/MIEST/utils/vib_utils.py", line 189, in encoder
+    mean = self.nn_encoder(x)
+  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/site-packages/torch/nn/modules/container.py", line 141, in forward
+    input = module(input)
+  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/site-packages/torch/nn/modules/linear.py", line 103, in forward
+    return F.linear(input, self.weight, self.bias)
+RuntimeError: CUDA error: no kernel image is available for execution on the device
+CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
+[33m[W 2023-03-24 11:06:56,710][0m Trial 47 failed because of the following error: RuntimeError('CUDA error: no kernel image is available for execution on the device\nCUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.\nFor debugging consider passing CUDA_LAUNCH_BLOCKING=1.')[0m
+Traceback (most recent call last):
+  File "/mnt/home/yjo10/pyenv/venv/lib/python3.9/site-packages/optuna/study/_optimize.py", line 196, in _run_trial
+    value_or_values = func(trial)
+  File "/mnt/ceph/users/yjo10/CAMELS/MIEST/information_bottleneck/./optimization_a.py", line 33, in objective
+    mist.train(epochs=2,
+  File "/mnt/home/yjo10/ceph/CAMELS/MIEST/utils/mist_utils.py", line 43, in train
+    self.vib, self.cls = trainer.run(learning_rate, epochs, decay_rate, beta, gamma,
+  File "/mnt/home/yjo10/ceph/CAMELS/MIEST/utils/vib_utils.py", line 331, in run
+    losses, pred = self.train_vib(X,y_param,beta,gamma,y_cls=y_cls)
+  File "/mnt/home/yjo10/ceph/CAMELS/MIEST/utils/vib_utils.py", line 455, in train_vib
+    y_pred, y_sigma = self.vib(X)
+  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/mnt/home/yjo10/ceph/CAMELS/MIEST/utils/vib_utils.py", line 94, in forward
+    self.mu, self.std = self.encoder(x)
+  File "/mnt/home/yjo10/ceph/CAMELS/MIEST/utils/vib_utils.py", line 189, in encoder
+    mean = self.nn_encoder(x)
+  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/site-packages/torch/nn/modules/container.py", line 141, in forward
+    input = module(input)
+  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/site-packages/torch/nn/modules/linear.py", line 103, in forward
+    return F.linear(input, self.weight, self.bias)
+RuntimeError: CUDA error: no kernel image is available for execution on the device
+CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
+[33m[W 2023-03-24 11:06:57,167][0m Trial 48 failed because of the following error: RuntimeError('CUDA error: no kernel image is available for execution on the device\nCUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.\nFor debugging consider passing CUDA_LAUNCH_BLOCKING=1.')[0m
+Traceback (most recent call last):
+  File "/mnt/home/yjo10/pyenv/venv/lib/python3.9/site-packages/optuna/study/_optimize.py", line 196, in _run_trial
+    value_or_values = func(trial)
+  File "/mnt/ceph/users/yjo10/CAMELS/MIEST/information_bottleneck/./optimization_a.py", line 33, in objective
+    mist.train(epochs=2,
+  File "/mnt/home/yjo10/ceph/CAMELS/MIEST/utils/mist_utils.py", line 43, in train
+    self.vib, self.cls = trainer.run(learning_rate, epochs, decay_rate, beta, gamma,
+  File "/mnt/home/yjo10/ceph/CAMELS/MIEST/utils/vib_utils.py", line 331, in run
+    losses, pred = self.train_vib(X,y_param,beta,gamma,y_cls=y_cls)
+  File "/mnt/home/yjo10/ceph/CAMELS/MIEST/utils/vib_utils.py", line 455, in train_vib
+    y_pred, y_sigma = self.vib(X)
+  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/mnt/home/yjo10/ceph/CAMELS/MIEST/utils/vib_utils.py", line 94, in forward
+    self.mu, self.std = self.encoder(x)
+  File "/mnt/home/yjo10/ceph/CAMELS/MIEST/utils/vib_utils.py", line 189, in encoder
+    mean = self.nn_encoder(x)
+  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/site-packages/torch/nn/modules/container.py", line 141, in forward
+    input = module(input)
+  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/site-packages/torch/nn/modules/linear.py", line 103, in forward
+    return F.linear(input, self.weight, self.bias)
+RuntimeError: CUDA error: no kernel image is available for execution on the device
+CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
+[33m[W 2023-03-24 11:06:57,536][0m Trial 49 failed because of the following error: RuntimeError('CUDA error: no kernel image is available for execution on the device\nCUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.\nFor debugging consider passing CUDA_LAUNCH_BLOCKING=1.')[0m
+Traceback (most recent call last):
+  File "/mnt/home/yjo10/pyenv/venv/lib/python3.9/site-packages/optuna/study/_optimize.py", line 196, in _run_trial
+    value_or_values = func(trial)
+  File "/mnt/ceph/users/yjo10/CAMELS/MIEST/information_bottleneck/./optimization_a.py", line 33, in objective
+    mist.train(epochs=2,
+  File "/mnt/home/yjo10/ceph/CAMELS/MIEST/utils/mist_utils.py", line 43, in train
+    self.vib, self.cls = trainer.run(learning_rate, epochs, decay_rate, beta, gamma,
+  File "/mnt/home/yjo10/ceph/CAMELS/MIEST/utils/vib_utils.py", line 331, in run
+    losses, pred = self.train_vib(X,y_param,beta,gamma,y_cls=y_cls)
+  File "/mnt/home/yjo10/ceph/CAMELS/MIEST/utils/vib_utils.py", line 455, in train_vib
+    y_pred, y_sigma = self.vib(X)
+  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/mnt/home/yjo10/ceph/CAMELS/MIEST/utils/vib_utils.py", line 94, in forward
+    self.mu, self.std = self.encoder(x)
+  File "/mnt/home/yjo10/ceph/CAMELS/MIEST/utils/vib_utils.py", line 189, in encoder
+    mean = self.nn_encoder(x)
+  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/site-packages/torch/nn/modules/container.py", line 141, in forward
+    input = module(input)
+  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/site-packages/torch/nn/modules/linear.py", line 103, in forward
+    return F.linear(input, self.weight, self.bias)
+RuntimeError: CUDA error: no kernel image is available for execution on the device
+CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
+[33m[W 2023-03-24 11:06:57,537][0m Trial 46 failed because of the following error: RuntimeError('CUDA error: no kernel image is available for execution on the device\nCUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.\nFor debugging consider passing CUDA_LAUNCH_BLOCKING=1.')[0m
+Traceback (most recent call last):
+  File "/mnt/home/yjo10/pyenv/venv/lib/python3.9/site-packages/optuna/study/_optimize.py", line 196, in _run_trial
+    value_or_values = func(trial)
+  File "/mnt/ceph/users/yjo10/CAMELS/MIEST/information_bottleneck/./optimization_a.py", line 33, in objective
+    mist.train(epochs=2,
+  File "/mnt/home/yjo10/ceph/CAMELS/MIEST/utils/mist_utils.py", line 43, in train
+    self.vib, self.cls = trainer.run(learning_rate, epochs, decay_rate, beta, gamma,
+  File "/mnt/home/yjo10/ceph/CAMELS/MIEST/utils/vib_utils.py", line 331, in run
+    losses, pred = self.train_vib(X,y_param,beta,gamma,y_cls=y_cls)
+  File "/mnt/home/yjo10/ceph/CAMELS/MIEST/utils/vib_utils.py", line 455, in train_vib
+    y_pred, y_sigma = self.vib(X)
+  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/mnt/home/yjo10/ceph/CAMELS/MIEST/utils/vib_utils.py", line 94, in forward
+    self.mu, self.std = self.encoder(x)
+  File "/mnt/home/yjo10/ceph/CAMELS/MIEST/utils/vib_utils.py", line 189, in encoder
+    mean = self.nn_encoder(x)
+  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/site-packages/torch/nn/modules/container.py", line 141, in forward
+    input = module(input)
+  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/site-packages/torch/nn/modules/linear.py", line 103, in forward
+    return F.linear(input, self.weight, self.bias)
+RuntimeError: CUDA error: no kernel image is available for execution on the device
+CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
+[33m[W 2023-03-24 11:06:58,100][0m Trial 51 failed because of the following error: RuntimeError('CUDA error: no kernel image is available for execution on the device\nCUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.\nFor debugging consider passing CUDA_LAUNCH_BLOCKING=1.')[0m
+Traceback (most recent call last):
+  File "/mnt/home/yjo10/pyenv/venv/lib/python3.9/site-packages/optuna/study/_optimize.py", line 196, in _run_trial
+    value_or_values = func(trial)
+  File "/mnt/ceph/users/yjo10/CAMELS/MIEST/information_bottleneck/./optimization_a.py", line 33, in objective
+    mist.train(epochs=2,
+  File "/mnt/home/yjo10/ceph/CAMELS/MIEST/utils/mist_utils.py", line 43, in train
+    self.vib, self.cls = trainer.run(learning_rate, epochs, decay_rate, beta, gamma,
+  File "/mnt/home/yjo10/ceph/CAMELS/MIEST/utils/vib_utils.py", line 331, in run
+    losses, pred = self.train_vib(X,y_param,beta,gamma,y_cls=y_cls)
+  File "/mnt/home/yjo10/ceph/CAMELS/MIEST/utils/vib_utils.py", line 455, in train_vib
+    y_pred, y_sigma = self.vib(X)
+  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/mnt/home/yjo10/ceph/CAMELS/MIEST/utils/vib_utils.py", line 94, in forward
+    self.mu, self.std = self.encoder(x)
+  File "/mnt/home/yjo10/ceph/CAMELS/MIEST/utils/vib_utils.py", line 189, in encoder
+    mean = self.nn_encoder(x)
+  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/site-packages/torch/nn/modules/container.py", line 141, in forward
+    input = module(input)
+  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/site-packages/torch/nn/modules/linear.py", line 103, in forward
+    return F.linear(input, self.weight, self.bias)
+RuntimeError: CUDA error: no kernel image is available for execution on the device
+CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
+[33m[W 2023-03-24 11:06:58,101][0m Trial 54 failed because of the following error: RuntimeError('CUDA error: no kernel image is available for execution on the device\nCUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.\nFor debugging consider passing CUDA_LAUNCH_BLOCKING=1.')[0m
+Traceback (most recent call last):
+  File "/mnt/home/yjo10/pyenv/venv/lib/python3.9/site-packages/optuna/study/_optimize.py", line 196, in _run_trial
+    value_or_values = func(trial)
+  File "/mnt/ceph/users/yjo10/CAMELS/MIEST/information_bottleneck/./optimization_a.py", line 33, in objective
+    mist.train(epochs=2,
+  File "/mnt/home/yjo10/ceph/CAMELS/MIEST/utils/mist_utils.py", line 43, in train
+    self.vib, self.cls = trainer.run(learning_rate, epochs, decay_rate, beta, gamma,
+  File "/mnt/home/yjo10/ceph/CAMELS/MIEST/utils/vib_utils.py", line 331, in run
+    losses, pred = self.train_vib(X,y_param,beta,gamma,y_cls=y_cls)
+  File "/mnt/home/yjo10/ceph/CAMELS/MIEST/utils/vib_utils.py", line 455, in train_vib
+    y_pred, y_sigma = self.vib(X)
+  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/mnt/home/yjo10/ceph/CAMELS/MIEST/utils/vib_utils.py", line 94, in forward
+    self.mu, self.std = self.encoder(x)
+  File "/mnt/home/yjo10/ceph/CAMELS/MIEST/utils/vib_utils.py", line 189, in encoder
+    mean = self.nn_encoder(x)
+  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/site-packages/torch/nn/modules/container.py", line 141, in forward
+    input = module(input)
+  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/site-packages/torch/nn/modules/linear.py", line 103, in forward
+    return F.linear(input, self.weight, self.bias)
+RuntimeError: CUDA error: no kernel image is available for execution on the device
+CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
+[33m[W 2023-03-24 11:06:58,102][0m Trial 53 failed because of the following error: RuntimeError('CUDA error: no kernel image is available for execution on the device\nCUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.\nFor debugging consider passing CUDA_LAUNCH_BLOCKING=1.')[0m
+Traceback (most recent call last):
+  File "/mnt/home/yjo10/pyenv/venv/lib/python3.9/site-packages/optuna/study/_optimize.py", line 196, in _run_trial
+    value_or_values = func(trial)
+  File "/mnt/ceph/users/yjo10/CAMELS/MIEST/information_bottleneck/./optimization_a.py", line 33, in objective
+    mist.train(epochs=2,
+  File "/mnt/home/yjo10/ceph/CAMELS/MIEST/utils/mist_utils.py", line 43, in train
+    self.vib, self.cls = trainer.run(learning_rate, epochs, decay_rate, beta, gamma,
+  File "/mnt/home/yjo10/ceph/CAMELS/MIEST/utils/vib_utils.py", line 331, in run
+    losses, pred = self.train_vib(X,y_param,beta,gamma,y_cls=y_cls)
+  File "/mnt/home/yjo10/ceph/CAMELS/MIEST/utils/vib_utils.py", line 455, in train_vib
+    y_pred, y_sigma = self.vib(X)
+  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/mnt/home/yjo10/ceph/CAMELS/MIEST/utils/vib_utils.py", line 94, in forward
+    self.mu, self.std = self.encoder(x)
+  File "/mnt/home/yjo10/ceph/CAMELS/MIEST/utils/vib_utils.py", line 189, in encoder
+    mean = self.nn_encoder(x)
+  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/site-packages/torch/nn/modules/container.py", line 141, in forward
+    input = module(input)
+  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/site-packages/torch/nn/modules/linear.py", line 103, in forward
+    return F.linear(input, self.weight, self.bias)
+RuntimeError: CUDA error: no kernel image is available for execution on the device
+CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
+[33m[W 2023-03-24 11:06:58,259][0m Trial 50 failed because of the following error: RuntimeError('CUDA error: no kernel image is available for execution on the device\nCUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.\nFor debugging consider passing CUDA_LAUNCH_BLOCKING=1.')[0m
+Traceback (most recent call last):
+  File "/mnt/home/yjo10/pyenv/venv/lib/python3.9/site-packages/optuna/study/_optimize.py", line 196, in _run_trial
+    value_or_values = func(trial)
+  File "/mnt/ceph/users/yjo10/CAMELS/MIEST/information_bottleneck/./optimization_a.py", line 33, in objective
+    mist.train(epochs=2,
+  File "/mnt/home/yjo10/ceph/CAMELS/MIEST/utils/mist_utils.py", line 43, in train
+    self.vib, self.cls = trainer.run(learning_rate, epochs, decay_rate, beta, gamma,
+  File "/mnt/home/yjo10/ceph/CAMELS/MIEST/utils/vib_utils.py", line 331, in run
+    losses, pred = self.train_vib(X,y_param,beta,gamma,y_cls=y_cls)
+  File "/mnt/home/yjo10/ceph/CAMELS/MIEST/utils/vib_utils.py", line 455, in train_vib
+    y_pred, y_sigma = self.vib(X)
+  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/mnt/home/yjo10/ceph/CAMELS/MIEST/utils/vib_utils.py", line 94, in forward
+    self.mu, self.std = self.encoder(x)
+  File "/mnt/home/yjo10/ceph/CAMELS/MIEST/utils/vib_utils.py", line 189, in encoder
+    mean = self.nn_encoder(x)
+  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/site-packages/torch/nn/modules/container.py", line 141, in forward
+    input = module(input)
+  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/site-packages/torch/nn/modules/linear.py", line 103, in forward
+    return F.linear(input, self.weight, self.bias)
+RuntimeError: CUDA error: no kernel image is available for execution on the device
+CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
+[33m[W 2023-03-24 11:06:58,462][0m Trial 52 failed because of the following error: RuntimeError('CUDA error: no kernel image is available for execution on the device\nCUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.\nFor debugging consider passing CUDA_LAUNCH_BLOCKING=1.')[0m
+Traceback (most recent call last):
+  File "/mnt/home/yjo10/pyenv/venv/lib/python3.9/site-packages/optuna/study/_optimize.py", line 196, in _run_trial
+    value_or_values = func(trial)
+  File "/mnt/ceph/users/yjo10/CAMELS/MIEST/information_bottleneck/./optimization_a.py", line 33, in objective
+    mist.train(epochs=2,
+  File "/mnt/home/yjo10/ceph/CAMELS/MIEST/utils/mist_utils.py", line 43, in train
+    self.vib, self.cls = trainer.run(learning_rate, epochs, decay_rate, beta, gamma,
+  File "/mnt/home/yjo10/ceph/CAMELS/MIEST/utils/vib_utils.py", line 331, in run
+    losses, pred = self.train_vib(X,y_param,beta,gamma,y_cls=y_cls)
+  File "/mnt/home/yjo10/ceph/CAMELS/MIEST/utils/vib_utils.py", line 455, in train_vib
+    y_pred, y_sigma = self.vib(X)
+  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/mnt/home/yjo10/ceph/CAMELS/MIEST/utils/vib_utils.py", line 94, in forward
+    self.mu, self.std = self.encoder(x)
+  File "/mnt/home/yjo10/ceph/CAMELS/MIEST/utils/vib_utils.py", line 189, in encoder
+    mean = self.nn_encoder(x)
+  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/site-packages/torch/nn/modules/container.py", line 141, in forward
+    input = module(input)
+  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/site-packages/torch/nn/modules/linear.py", line 103, in forward
+    return F.linear(input, self.weight, self.bias)
+RuntimeError: CUDA error: no kernel image is available for execution on the device
+CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
+Traceback (most recent call last):
+  File "/mnt/ceph/users/yjo10/CAMELS/MIEST/information_bottleneck/./optimization_a.py", line 82, in <module>
+    opt.run()
+  File "/mnt/ceph/users/yjo10/CAMELS/MIEST/information_bottleneck/./optimization_a.py", line 57, in run
+    study.optimize(self.objective, n_trials=500, n_jobs=10)
+  File "/mnt/home/yjo10/pyenv/venv/lib/python3.9/site-packages/optuna/study/study.py", line 419, in optimize
+    _optimize(
+  File "/mnt/home/yjo10/pyenv/venv/lib/python3.9/site-packages/optuna/study/_optimize.py", line 103, in _optimize
+    f.result()
+  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/concurrent/futures/_base.py", line 439, in result
+    return self.__get_result()
+  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/concurrent/futures/_base.py", line 391, in __get_result
+    raise self._exception
+  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/mnt/home/yjo10/pyenv/venv/lib/python3.9/site-packages/optuna/study/_optimize.py", line 160, in _optimize_sequential
+    frozen_trial = _run_trial(study, func, catch)
+  File "/mnt/home/yjo10/pyenv/venv/lib/python3.9/site-packages/optuna/study/_optimize.py", line 234, in _run_trial
+    raise func_err
+  File "/mnt/home/yjo10/pyenv/venv/lib/python3.9/site-packages/optuna/study/_optimize.py", line 196, in _run_trial
+    value_or_values = func(trial)
+  File "/mnt/ceph/users/yjo10/CAMELS/MIEST/information_bottleneck/./optimization_a.py", line 33, in objective
+    mist.train(epochs=2,
+  File "/mnt/home/yjo10/ceph/CAMELS/MIEST/utils/mist_utils.py", line 43, in train
+    self.vib, self.cls = trainer.run(learning_rate, epochs, decay_rate, beta, gamma, 
+  File "/mnt/home/yjo10/ceph/CAMELS/MIEST/utils/vib_utils.py", line 331, in run
+    losses, pred = self.train_vib(X,y_param,beta,gamma,y_cls=y_cls)
+  File "/mnt/home/yjo10/ceph/CAMELS/MIEST/utils/vib_utils.py", line 455, in train_vib
+    y_pred, y_sigma = self.vib(X)
+  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/mnt/home/yjo10/ceph/CAMELS/MIEST/utils/vib_utils.py", line 94, in forward
+    self.mu, self.std = self.encoder(x)
+  File "/mnt/home/yjo10/ceph/CAMELS/MIEST/utils/vib_utils.py", line 189, in encoder
+    mean = self.nn_encoder(x)
+  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/site-packages/torch/nn/modules/container.py", line 141, in forward
+    input = module(input)
+  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/site-packages/torch/nn/modules/linear.py", line 103, in forward
+    return F.linear(input, self.weight, self.bias)
+RuntimeError: CUDA error: no kernel image is available for execution on the device
+CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1.

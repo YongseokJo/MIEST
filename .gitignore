@@ -2,3 +2,8 @@
 data/*
 *_tmp.ipynb
 *.out
+*.pt
+*.png
+*.db
+information_bottleneck/logfiles
+*.sh

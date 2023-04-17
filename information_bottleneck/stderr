@@ -1,28 +1,10 @@
-/mnt/ceph/users/yjo10/CAMELS/MIEST/information_bottleneck/./data_extraction_TNG_SIMBA.py:56: DeprecationWarning: Converting `np.complex` to a dtype is deprecated. The current result is `complex128` which is not strictly correct.
-  coef = np.zeros((N*batch_size,num_coeffs), dtype=np.complexfloating)
-/mnt/ceph/users/yjo10/CAMELS/MIEST/information_bottleneck/./data_extraction_TNG_SIMBA.py:85: DeprecationWarning: Converting `np.complex` to a dtype is deprecated. The current result is `complex128` which is not strictly correct.
-  coef = np.zeros((N*batch_size,num_coeffs), dtype=np.complexfloating)
-/mnt/ceph/users/yjo10/CAMELS/MIEST/information_bottleneck/./data_extraction_TNG_SIMBA.py:56: DeprecationWarning: Converting `np.complex` to a dtype is deprecated. The current result is `complex128` which is not strictly correct.
-  coef = np.zeros((N*batch_size,num_coeffs), dtype=np.complexfloating)
-/mnt/ceph/users/yjo10/CAMELS/MIEST/information_bottleneck/./data_extraction_TNG_SIMBA.py:85: DeprecationWarning: Converting `np.complex` to a dtype is deprecated. The current result is `complex128` which is not strictly correct.
-  coef = np.zeros((N*batch_size,num_coeffs), dtype=np.complexfloating)
-/mnt/ceph/users/yjo10/CAMELS/MIEST/information_bottleneck/./data_extraction_TNG_SIMBA.py:56: DeprecationWarning: Converting `np.complex` to a dtype is deprecated. The current result is `complex128` which is not strictly correct.
-  coef = np.zeros((N*batch_size,num_coeffs), dtype=np.complexfloating)
-/mnt/ceph/users/yjo10/CAMELS/MIEST/information_bottleneck/./data_extraction_TNG_SIMBA.py:85: DeprecationWarning: Converting `np.complex` to a dtype is deprecated. The current result is `complex128` which is not strictly correct.
-  coef = np.zeros((N*batch_size,num_coeffs), dtype=np.complexfloating)
-/mnt/ceph/users/yjo10/CAMELS/MIEST/information_bottleneck/./data_extraction_TNG_SIMBA.py:56: DeprecationWarning: Converting `np.complex` to a dtype is deprecated. The current result is `complex128` which is not strictly correct.
-  coef = np.zeros((N*batch_size,num_coeffs), dtype=np.complexfloating)
-/mnt/ceph/users/yjo10/CAMELS/MIEST/information_bottleneck/./data_extraction_TNG_SIMBA.py:85: DeprecationWarning: Converting `np.complex` to a dtype is deprecated. The current result is `complex128` which is not strictly correct.
-  coef = np.zeros((N*batch_size,num_coeffs), dtype=np.complexfloating)
-/mnt/ceph/users/yjo10/CAMELS/MIEST/information_bottleneck/./data_extraction_TNG_SIMBA.py:56: DeprecationWarning: Converting `np.complex` to a dtype is deprecated. The current result is `complex128` which is not strictly correct.
-  coef = np.zeros((N*batch_size,num_coeffs), dtype=np.complexfloating)
-/mnt/ceph/users/yjo10/CAMELS/MIEST/information_bottleneck/./data_extraction_TNG_SIMBA.py:85: DeprecationWarning: Converting `np.complex` to a dtype is deprecated. The current result is `complex128` which is not strictly correct.
-  coef = np.zeros((N*batch_size,num_coeffs), dtype=np.complexfloating)
-/mnt/ceph/users/yjo10/CAMELS/MIEST/information_bottleneck/./data_extraction_TNG_SIMBA.py:56: DeprecationWarning: Converting `np.complex` to a dtype is deprecated. The current result is `complex128` which is not strictly correct.
-  coef = np.zeros((N*batch_size,num_coeffs), dtype=np.complexfloating)
-/mnt/ceph/users/yjo10/CAMELS/MIEST/information_bottleneck/./data_extraction_TNG_SIMBA.py:85: DeprecationWarning: Converting `np.complex` to a dtype is deprecated. The current result is `complex128` which is not strictly correct.
-  coef = np.zeros((N*batch_size,num_coeffs), dtype=np.complexfloating)
-/mnt/ceph/users/yjo10/CAMELS/MIEST/information_bottleneck/./data_extraction_TNG_SIMBA.py:56: DeprecationWarning: Converting `np.complex` to a dtype is deprecated. The current result is `complex128` which is not strictly correct.
-  coef = np.zeros((N*batch_size,num_coeffs), dtype=np.complexfloating)
-/mnt/ceph/users/yjo10/CAMELS/MIEST/information_bottleneck/./data_extraction_TNG_SIMBA.py:85: DeprecationWarning: Converting `np.complex` to a dtype is deprecated. The current result is `complex128` which is not strictly correct.
-  coef = np.zeros((N*batch_size,num_coeffs), dtype=np.complexfloating)
+Traceback (most recent call last):
+  File "/mnt/ceph/users/yjo10/CAMELS/MIEST/information_bottleneck/./VIB_for_table.py", line 334, in <module>
+    mist    = MIST(sim=sim, field=field, batch_size=100, 
+  File "/mnt/home/yjo10/ceph/CAMELS/MIEST/utils/mist_utils.py", line 48, in __init__
+    self.input, self.output = self.load_data(data_type=data_type,
+  File "/mnt/home/yjo10/ceph/CAMELS/MIEST/utils/mist_utils.py", line 347, in load_data
+    coef = np.load(
+  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/site-packages/numpy/lib/npyio.py", line 417, in load
+    fid = stack.enter_context(open(os_fspath(file), "rb"))
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/home/yjo10/ceph/CAMELS/MIEST/data/wph_pIllustrisTNG_Mtot_for_vib_total_l_4_dn_0.npy'
