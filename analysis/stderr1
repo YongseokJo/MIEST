@@ -1,9 +1,0 @@
-/mnt/ceph/users/yjo10/CAMELS/MIEST/analysis/./variance_two_sim.py:10: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
-  from imp import reload
-Traceback (most recent call last):
-  File "/mnt/ceph/users/yjo10/CAMELS/MIEST/analysis/./variance_two_sim.py", line 94, in <module>
-    print(prob)
-  File "<__array_function__ internals>", line 200, in save
-  File "/mnt/home/yjo10/pyenv/venv/lib/python3.9/site-packages/numpy/lib/npyio.py", line 521, in save
-    arr = np.asanyarray(arr)
-ValueError: setting an array element with a sequence. The requested array has an inhomogeneous shape after 2 dimensions. The detected shape was (189, 10) + inhomogeneous part.
