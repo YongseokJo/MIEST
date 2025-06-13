@@ -464,34 +464,43 @@ if True:
     sim    = ['TNG', 'SIMBA']
     #for beta in betas:
     #    for gamma in gammas:
-    z_dim = 400; lr=1e-3; decay_rate=None
-    fe = 0.3; fd=0.6; dr=0.1
-    batch_size= 512
+    z_dim = 100; lr=1e-3; decay_rate=None
+    fe = 0.4; fd=0.3; dr=0.01
+    batch_size= 1000
 
-    gammas  = [0.001, 0.01, 0.1,1]
-    betas = [0.1, 1, 10, 100]
+    gammas  = [0., 0.001, 0.01, 0.1,1]
+    betas = [0., 0.1, 1, 10, 100]
 
-    mono       = True
+
+    #gammas  = [0.,]
+    #betas = [0.,]
+    #gammas  = [0.1,1]
+    #betas = [10, 100]
+
+    mono       = False
     norm       = True
-    average    = False
+    average    = True
     projection = False
 
 
-    for beta in betas:
-        for gamma in gammas:
-            fname = "search/TNG_SIMBA_{}_b_{}_g_{}".format(
+    for i, beta in enumerate(betas):
+        for _ in [0]: #for gamma in gammas:
+            gamma = gammas[i]
+            #fname = "TNG_SIMBA_{}_b_{}_g_{}_z_{}_more_expressive".format(
+            fname = "TNG_SIMBA_{}_b_{}_g_{}_z_{}_simple_".format(
                 field,
                 beta,
                 gamma,
-                )
+                z_dim
+            )
             print("{} starts!".format(fname))
             mist    = MIST(sim=sim, field=field, batch_size=batch_size, 
                            normalization=norm, monopole=mono,
-                           average=average, data_type='wph', device=device,
-                           L=4, dn=0,
-                           projection=projection)
+                           average=average, data_type='pywst', device=device,
+                           L=4, dn=2,
+                           projection=projection, proc_imag=np.absolute)
             success = mist.train(epochs=8000,
-                                 verbose=True, learning_rate=lr, decay_rate=decay_rate,
+                                 verbose=True, learning_rate=lr, 
                                  which_machine="vib+cls", 
                                  beta=beta, gamma=gamma,
                                  z_dim=z_dim, hidden1=fe, hidden2=fd, dr=dr,
@@ -500,6 +509,8 @@ if True:
                                  save_plot=True, save_model=True,
                                 )
             if success:
+                fpath = './model/search/'
+                mist.save_models(fname=fname, fpath=fpath)
                 mse_om, mse_sig, chi2_om, chi2_sig, auc =\
                         mist.get_score(bias_test=False, _print=True)
             else:

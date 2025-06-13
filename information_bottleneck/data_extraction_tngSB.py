@@ -12,7 +12,7 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 
 
-for field in ['Mgas','Mstar','HI','ne','Vcdm','Z', 'T']:
+for field in ['HI','ne','Vcdm','Z', 'T','Mgas','Mstar','Mtot']:
     index= []
     try:
         del sb_maps

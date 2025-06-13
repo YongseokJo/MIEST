@@ -7,3 +7,90 @@ data/*
 *.db
 information_bottleneck/logfiles
 *.sh
+
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+env.bak/
+*.env
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# VSCode settings
+.vscode/
+
+# PyCharm
+.idea/
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pytest
+.cache/
+.pytest_cache/
+
+# Coverage reports
+htmlcov/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+
+# PyInstaller
+dist/
+build/
+*.spec
+
+# Log files
+*.log
+
+# Distribution / packaging
+*.egg-info/
+.eggs/
+*.egg
+*.manifest
+*.spec
+*.wheel
+pip-wheel-metadata/
+*.dist-info/
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / test result cache
+test-results/
+
+# Pylint
+pylint-report.txt
+pylint-output.txt
+
+# Bandit
+bandit.json
+
+# dotenv
+.env
+.env.*
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+

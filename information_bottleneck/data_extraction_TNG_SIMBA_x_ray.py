@@ -11,19 +11,11 @@ import matplotlib.pyplot as plt
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 
-fmaps = \
-                "/mnt/home/fvillaescusa/CAMELS/PUBLIC_RELEASE/CMD/2D_maps/data/Maps_Mtot_IllustrisTNG_LH_z=0.00.npy"
-# read the data
-tng_maps = np.log10(np.load(fmaps))
-fmaps = \
-                "/mnt/home/fvillaescusa/CAMELS/PUBLIC_RELEASE/CMD/2D_maps/data/Maps_Mtot_SIMBA_LH_z=0.00.npy"
-# read the data
-simba_maps = np.log10(np.load(fmaps))
 
 X, Y = 256, 256
 J = 7
 L = 4 ##
-dn=0
+dn=2
 suffix='_l_{}_dn_{}'.format(L,dn)
 
 

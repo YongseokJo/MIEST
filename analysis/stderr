@@ -1,0 +1,28 @@
+/mnt/ceph/users/yjo10/CAMELS/MIEST/analysis/./variance_two_sim.py:10: DeprecationWarning: the imp module is deprecated in favour of importlib; see the module's documentation for alternative uses
+  from imp import reload
+Traceback (most recent call last):
+  File "/mnt/ceph/users/yjo10/CAMELS/MIEST/analysis/./variance_two_sim.py", line 74, in <module>
+    data = mist.make_plots_cnn(fname='cnn_test', save_plot=False, data_return=True,show_plot=False)
+  File "/mnt/home/yjo10/ceph/CAMELS/MIEST/utils/mist_utils.py", line 793, in make_plots_cnn
+    y_pred_tmp, y_std_tmp = self.predict_cnn(X)
+  File "/mnt/home/yjo10/ceph/CAMELS/MIEST/utils/mist_utils.py", line 735, in predict_cnn
+    pred,    std        = self.vib(X_)
+  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/mnt/home/yjo10/ceph/CAMELS/MIEST/utils/networks.py", line 841, in forward
+    self.z_cnn = self.cnn(x)
+  File "/mnt/home/yjo10/ceph/CAMELS/MIEST/utils/networks.py", line 767, in cnn
+    x = self.LeakyReLU(self.C01(image))
+  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/site-packages/torch/nn/modules/conv.py", line 447, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/site-packages/torch/nn/modules/conv.py", line 440, in _conv_forward
+    return F.conv2d(F.pad(input, self._reversed_padding_repeated_twice, mode=self.padding_mode),
+  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/site-packages/torch/nn/functional.py", line 4383, in _pad
+    return _pad_circular(input, pad)
+  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/site-packages/torch/nn/functional.py", line 4811, in _pad_circular
+    out[..., out_d0:out_d1, out_h0:out_h1] = input[..., in_d0:in_d1, in_h0:in_h1]
+RuntimeError: CUDA error: no kernel image is available for execution on the device
+CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1.

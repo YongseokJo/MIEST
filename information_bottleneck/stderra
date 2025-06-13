@@ -1,6 +1,0 @@
-Traceback (most recent call last):
-  File "/mnt/ceph/users/yjo10/CAMELS/MIEST/information_bottleneck/./data_extraction_ASTRID.py", line 27, in <module>
-    maps = np.load(fmaps)
-  File "/mnt/sw/nix/store/z6v265ivx5w6xbajay41vdfc0la8gla5-python-3.9.12-view/lib/python3.9/site-packages/numpy/lib/npyio.py", line 417, in load
-    fid = stack.enter_context(open(os_fspath(file), "rb"))
-FileNotFoundError: [Errno 2] No such file or directory: '/mnt/home/fvillaescusa/CAMELS/Results/images_Astrid/Images_Mtot_Astrid_LH_z=0.00.npy'

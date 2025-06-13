@@ -7,6 +7,7 @@ from typing import List, Any
 import warnings
 import sklearn
 import math
+import torch
 
 
 class Callback:
@@ -107,116 +108,101 @@ class EarlyStopping(Callback):
         self.best_val_loss = np.inf
         self.best_auc      = np.inf
         self.best_val_auc  = np.inf
+        self.cnvg_penalty  = 1
 
     def on_epoch_end(self, epoch, logs=None):
         is_improved = False
+        is_converged = True
 
         current_loss = logs.get("j0_loss")
         accuracy     = logs.get("accuracy")
         val_accuray  = logs.get('val_accuray')
         val_loss     = logs.get('val_loss')
+        cnvg_tail    = logs.get('cnvg_tail')
+        cnvg_length = \
+                self.patience if self.patience >= epoch-cnvg_tail+1 else epoch-cnvg_tail+1
         if current_loss is None:
             return
 
-        def is_best(best, now, tol=None, is_save=False, use_deviation=False):
-            nonlocal is_improved
-            if use_deviation:
-                mean = np.mean(now[-self.patience:])
-                dev = np.abs(mean-np.array(now[-self.patience:]))
+        def is_best(best, now, tol=None, use_convergence=False):
+            nonlocal is_improved, is_converged
+            # is converged?
+            if use_convergence:
+                mean = np.mean(now[-cnvg_length:])
+                dev = np.abs(mean-np.array(now[-cnvg_length:]))
                 dev = np.mean(dev) ## MAE
                 criteria =\
-                        np.abs(mean*0.07/4) if use_deviation == True else use_deviation
-                #print(dev, criteria)
-                if dev > criteria: # think it's very generous ~ 10%
-                    # It's not improved, but we still gotta go,
-                    # since it's fluctuating...
-                    #print("Too much fluctuation")
-                    is_improved = True
+                        np.abs(mean*0.10/4) if use_convergence == True else use_convergence
+                #print(cnvg_length, cnvg_tail,dev,criteria)
+                if dev > criteria: # think it's very generous ~ 15%
+                    # Not converged, gotta go further,
+                    is_converged = False
+                    logs['cnvg_tail'] += self.cnvg_penalty
+                    self.cnvg_penalty += 1
+                    # lower bound for tail according to patience
+                    if self.patience > (epoch+1)-logs['cnvg_tail']+1:
+                        logs['cnvg_tail'] = \
+                                np.maximum(epoch+1-self.patience+1, 0)
+                        self.cnvg_penalty = 1
+                else:
+                    # reset the penalty
+                    self.cnvg_penalty = 1
                 now = now[-1]
 
+            # is improved?
             if now < best:
                 is_improved = True
-                if is_save:
-                    self.best_epoch    = epoch
-                    logs['best_epoch'] = epoch
                 return now
             else:
                 return best
 
-        self.best_val_loss   = is_best(self.best_val_loss, val_loss,
-                                       is_save=True)
+
+
+        self.best_val_loss   = is_best(self.best_val_loss, val_loss[-1])
         self.best_val_acc[0] = is_best(self.best_val_acc[0], val_accuray[0])
         self.best_val_acc[1] = is_best(self.best_val_acc[1], val_accuray[1])
-        self.best_acc        = is_best(self.best_acc, accuracy,
-                                       use_deviation=True)
-        self.best_loss       = is_best(self.best_loss, current_loss,
-                                       use_deviation=True)
+        self.best_acc        = is_best(self.best_acc, accuracy[-1])#,use_convergence=True)
+        self.best_loss       = is_best(self.best_loss, current_loss, use_convergence=True)
 
-        if self.trainer.which_machine in self.trainer.mach_vib_cls:
-            auc     = np.abs(np.array(logs.get('auc_score'))-0.5)[-1]
-            val_auc = np.abs(np.array(logs.get('auc_score_val'))-0.5)
-            self.best_auc = is_best(self.best_auc, auc)
-            self.best_val_auc = is_best(self.best_val_auc, val_auc,
-                                        use_deviation=0.05)
+        if self.trainer.which_machine in self.trainer.is_cls:
+            auc               = np.abs(np.array(logs.get('auc_score'))-0.5)[-1]
+            val_auc           = np.abs(np.array(logs.get('auc_score_val'))-0.5)
+            self.best_auc     = is_best(self.best_auc, auc)
+            self.best_val_auc = is_best(self.best_val_auc, val_auc, use_convergence=0.02)
 
 
-        """
-        if val_loss < self.best_val_loss:
-            self.best_val_loss = val_loss 
-            self.best_epoch   = epoch
-            logs['best_epoch'] = self.best_epoch
-            is_improved = True
-
-        if accuracy < self.best_acc:
-            self.best_acc = accuracy
-            is_improved = True
-
-        # 0.1% improvement
-        if  self.best_val_acc[0] - val_accuray[0] > 1e-2:
-            self.best_val_acc[0] = val_accuray[0]
-            is_improved = True
-
-        if  self.best_val_acc[1] - val_accuray[1] > 1e-2:
-            self.best_val_acc[1] = val_accuray[1]
-            is_improved = True
-
-        if max_improved or min_improved:
-            self.best_loss    = current_loss
-            is_improved = True
-
-        # for vib+cls
-        if self.trainer.which_machine in self.trainer.mach_vib_cls:
-           auc     = np.abs(logs.get('auc_score')[-1]-0.5)
-           val_auc = np.abs(logs.get('auc_score_val')[-1]-0.5)
-           if ( self.best_auc - auc ) > 1e-3 :
-               self.best_auc = auc
-               is_improved = True
-           if ( self.best_val_auc - val_auc ) > 1e-3 :
-               self.best_val_auc = val_auc - 0.5
-               is_improved = True
-               """
-
-        if is_improved:
+        if (is_improved) or (not is_converged):
             self.wait = 1
         else:
+            # early stop?
             if self.wait >= self.patience:
                 self.stopped_epoch   = epoch
                 logs["stop_training"] = True
+            # let's  wait
             self.wait += 1
+        # get the best epoch within the convergence region
+        cnvg_val_loss         = np.array(val_loss[-cnvg_length:])
+        self.best_epoch_loss  = cnvg_val_loss.min()
+        best_val_index        = np.argmin(cnvg_val_loss)
+        best_index            = (epoch+1) - cnvg_length + best_val_index \
+                if epoch+1 >= cnvg_length else best_val_index
+        #print(cnvg_val_loss.min(), val_loss[best_index])
+        self.best_epoch    = best_index
+        logs['best_epoch'] = best_index
 
     def on_train_end(self, logs=None):
         if self.stopped_epoch > 0:
             msg = f"\nEarly stopping occurred at epoch {self.stopped_epoch}"
             msg += (
                 f" with best_epoch = {self.best_epoch} and "
-                + f"best_{self.early_stopping_metric} = {round(self.best_loss, 5)}"
+                + f"best_val_loss = {round(self.best_epoch_loss, 5)}"
             )
             print(msg)
         else:
             msg = (
                 f"Stop training"
                 + f" with best_epoch = {self.best_epoch} and "
-                + f"best_{self.early_stopping_metric} = {round(self.best_loss, 5)}"
+                + f"best_val_loss = {round(self.best_epoch_loss, 5)}"
             )
             print(msg)
         wrn_msg = "Best weights from best epoch are automatically used!"
@@ -249,11 +235,13 @@ class Log(Callback):
         self.history.update({"stop_training": False})
         self.history.update({"best_weights": None})
         self.history.update({"val_accuray": None})
-        self.history.update({"val_loss": None})
+        self.history.update({"val_loss": []})
+        self.history.update({"cnvg_tail": 0})
         self.history.update({name: [] for name in self.metrics_names})
 
     def on_epoch_begin(self, epoch, logs=None):
-        self.samples_seen = 0.0
+        self.samples_seen   = 0.0
+        self.epoch_accuracy = 0.0
         for name in self.trainer.names_loss:
             self.epoch_loss[name] = 0.0
 
@@ -267,24 +255,26 @@ class Log(Callback):
         #        self.epoch_loss
                 #self.early_stopping_metric
 
-        if self.trainer.val_dataset is not None:
-            X_val, y_val = self.trainer.val_dataset.tensors
-            y_param        = y_val[:,:2].cpu().detach().numpy()
+        if self.trainer.valid_loader is not None:
+            X_val, y_val   = self.trainer.valid_loader.dataset.tensors
+            index          = self.trainer.valid_loader.sampler.indices
+            X_val, y_val   = X_val[index,:], y_val[index,:]
+            y_param        = y_val[:,:-self.trainer.num_sim].cpu().detach().numpy()
             y_pred, _      = self.trainer.vib(X_val.to(self.trainer.device))
             y_pred         = y_pred.detach().cpu().numpy()
             val_accuray    = np.abs(y_param-y_pred)/y_param
             val_accuray    = val_accuray.mean(axis=0)
             val_loss       = (y_param-y_pred)**2
-            val_loss       = np.sum(np.log(np.sum(val_loss,axis=0)))
+            val_loss       = np.sum(np.log(np.mean(val_loss,axis=0)))
 
-            if self.trainer.which_machine in self.trainer.mach_vib_cls:
-                cls_val       = y_val[:,2:]
+            if self.trainer.which_machine in self.trainer.is_cls:
+                cls_val       = y_val[:,-self.trainer.num_sim:]
                 _mu_val, _    = self.trainer.vib.get_mu_std()
                 cls_val_pred  = self.trainer.cls(_mu_val.detach())
         else:
             val_accuray = -1.0
 
-        if self.trainer.which_machine in self.trainer.mach_vib_cls:
+        if self.trainer.which_machine in self.trainer.is_cls:
             cls_pred = self.trainer.pred[2].detach().cpu().numpy()
             cls_pred[np.isnan(cls_pred)] = -1
             self.history["auc_score"].append(sklearn.metrics.roc_auc_score(
@@ -293,10 +283,9 @@ class Log(Callback):
             cls_val_pred[np.isnan(cls_val_pred)] = -1
             self.history["auc_score_val"].append(sklearn.metrics.roc_auc_score(
                 cls_val.clone().detach().cpu().numpy(),cls_val_pred))
-        self.history["accuracy"].append(self.trainer.batch_accuracy.cpu().detach().numpy()/\
-                                        len(self.trainer.train_loader.dataset))
+        self.history["accuracy"].append(self.epoch_accuracy)
         self.history["val_accuray"] = np.array(val_accuray)
-        self.history["val_loss"] = np.array(val_loss)
+        self.history["val_loss"].append(np.array(val_loss))
 
         if self.verbose == 0:
             return
@@ -308,7 +297,7 @@ class Log(Callback):
         msg = f"epoch {epoch:<3}"
         msg += f" | {'loss':<3}: {rnd(self.history['j0_loss'][-1]):<8}"
         msg += f" | {'accuracy':<3}: {rnd(self.history['accuracy'][-1]):<8}"
-        msg += f" | {'val_loss':<3}: {rnd(self.history['val_loss']):<8}"
+        msg += f" | {'val_loss':<3}: {rnd(self.history['val_loss'][-1]):<8}"
         msg += f" | {'Om_m':<3}: {rnd(self.history['val_accuray'][0]):<8}"
         msg += f" | {'sig8':<3}: {rnd(self.history['val_accuray'][1]):<8}"
         """
@@ -329,12 +318,11 @@ class Log(Callback):
                  / (self.samples_seen + self.batch_size) }
             )
 
-        """
-        self.early_stopping_metric = (
-            self.samples_seen * self.early_stopping_metric \
-            + self.batch_size * logs["early_stopping_metric"]
-        ) / (self.samples_seen + self.batch_size)
-        """
+        batch_accuracy = torch.sum(torch.abs(
+            self.trainer.y_param - self.trainer.pred[0])/self.trainer.y_param)
+        self.epoch_accuracy = (self.samples_seen * self.epoch_accuracy +\
+                               batch_accuracy.cpu().detach().numpy())\
+                               /(self.samples_seen + self.batch_size)
 
         self.samples_seen += self.batch_size
 

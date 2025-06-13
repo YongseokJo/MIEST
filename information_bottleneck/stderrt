@@ -1,4 +1,0 @@
-/mnt/ceph/users/yjo10/CAMELS/MIEST/information_bottleneck/./data_extraction_TNG_SIMBA_x_ray.py:72: DeprecationWarning: Converting `np.complex` to a dtype is deprecated. The current result is `complex128` which is not strictly correct.
-  coef = np.zeros((N*batch_size,num_coeffs), dtype=np.complexfloating)
-/mnt/ceph/users/yjo10/CAMELS/MIEST/information_bottleneck/./data_extraction_TNG_SIMBA_x_ray.py:120: DeprecationWarning: Converting `np.complex` to a dtype is deprecated. The current result is `complex128` which is not strictly correct.
-  coef = np.zeros((N*batch_size,num_coeffs), dtype=np.complexfloating)
